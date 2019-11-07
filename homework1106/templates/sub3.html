@@ -1,0 +1,27 @@
+{% extends 'father.html' %}
+
+{% block title %}
+    <title>sub3</title>
+{% endblock %}
+
+{% block content %}
+        <table id="tb1">
+        <tr>
+            <td>id</td>
+            <td>name</td>
+        </tr>
+        {% for foo in qs_bumen %}
+            {% if foo.id|divisibleby:'2' %}
+                <tr style="background-color: darkgrey">
+                    <td>{{ foo.id }}</td>
+                    <td>{{ foo.name }}</td>
+                </tr>
+            {% else %}
+                <tr style="background-color: red">
+                    <td>{{ foo.id }}</td>
+                    <td>{{ foo.name }}</td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+    </table>
+{% endblock %}

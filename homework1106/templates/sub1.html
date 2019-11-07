@@ -1,0 +1,60 @@
+{% extends 'father.html' %}
+{% block title %}
+    <title>sub1</title>
+{% endblock %}
+
+{% block content %}
+    <table id="tb1">
+        <tr>
+            <td>name</td>
+            <td>password</td>
+        </tr>
+        {% for foo in qs_yonghu %}
+            {% if foo.id|divisibleby:'2' %}
+                <tr style="background-color: darkgrey">
+                    <td>{{ foo.name }}</td>
+                    <td>{{ foo.password }}</td>
+                </tr>
+            {% else %}
+                <tr style="background-color: red">
+                    <td>{{ foo.name }}</td>
+                    <td>{{ foo.password }}</td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+
+{#        <tr>#}
+{#            <td>{{ qs_yonghu.0.name }}</td>#}
+{#            <td>{{ qs_yonghu.0.password }}</td>#}
+{#        </tr>#}
+{#        <tr>#}
+{#            <td>{{ qs_yonghu.0.name }}</td>#}
+{#            <td>{{ qs_yonghu.0.password }}</td>#}
+{#        </tr>#}
+{#        <tr>#}
+{#            <td>{{ qs_yonghu.0.name }}</td>#}
+{#            <td>{{ qs_yonghu.0.password }}</td>#}
+{#        </tr>#}
+    </table>
+{#    <script src="/static/jquery-1.11.1.js"></script>#}
+{#    <script>#}
+{#        console.log('sssssssssssssssssssssssssssssssssssss')#}
+{#        var q_length = {{ q_length }};#}
+{#        console.log(q_length);#}
+{##}
+{#        for (var i = 0; i < {{ q_length }}; i++){#}
+{#            var $tr = $('<tr></tr>');#}
+{#            var $nameTd = $('<td>' + {{ qs_yonghu.i.name }} + '</td>');#}
+{#            var $pwdTd = $('<td>' + {{ qs_yonghu.i.password }} + '</td>');#}
+{#            //逐一添加#}
+{#            $nameTd.appendTo($tr);#}
+{#            $pwdTd.appendTo($tr);#}
+{#            //添加到tbody#}
+{#            $('#tb1').append($tr);#}
+{##}
+{#        }#}
+{#    </script>#}
+{% endblock %}
+
+
+

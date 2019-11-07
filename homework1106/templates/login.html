@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+</head>
+<body>
+    <form action="/loginapp/logincheck/" method="post">
+        {% csrf_token %}
+        名称：<input type="text" name="username"><br>
+        请问您要查询... <br>
+        <select name="biao" id="">
+            <option value="yonghu">用户</option>
+            <option value="yuangong">员工</option>
+            <option value="bumen">部门</option>
+        </select><br>
+        <input type="submit" value="提交">
+    </form>
+</body>
+</html>

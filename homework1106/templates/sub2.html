@@ -1,0 +1,30 @@
+{% extends 'father.html' %}
+
+{% block title %}
+    <title>sub2</title>
+{% endblock %}
+
+{% block content %}
+        <table id="tb1">
+        <tr>
+            <td>id</td>
+            <td>name</td>
+            <td>password</td>
+        </tr>
+        {% for foo in qs_yuangong %}
+            {% if foo.id|divisibleby:'2' %}
+                <tr style="background-color: darkgrey">
+                    <td>{{ foo.id }}</td>
+                    <td>{{ foo.name }}</td>
+                    <td>{{ foo.password }}</td>
+                </tr>
+            {% else %}
+                <tr style="background-color: red">
+                    <td>{{ foo.id }}</td>
+                    <td>{{ foo.name }}</td>
+                    <td>{{ foo.password }}</td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+    </table>
+{% endblock %}
