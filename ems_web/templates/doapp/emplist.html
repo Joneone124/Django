@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<title>emplist</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<link rel="stylesheet" type="text/css" href="/static/style.css" />
+	</head>
+	<body>
+        {% load static %}
+		<div id="wrap">
+			<div id="top_content"> 
+				<div id="header">
+					<div id="rightheader">
+						<p id="timenow">
+
+							<br />
+						</p>
+					</div>
+					<div id="topheader">
+						<h1 id="title">
+							<a href="#">main</a>
+						</h1>
+					</div>
+					<div id="navigation">
+					</div>
+				</div>
+				<div id="content">
+					<p id="whereami">
+					</p>
+					<h1>
+						Welcome!
+					</h1>
+					<table class="table">
+						<tr class="table_header">
+							<td>
+								ID
+							</td>
+							<td>
+								Name
+							</td>
+							<td>
+								Salary
+							</td>
+							<td>
+								Age
+							</td>
+                            <td>
+                                Head
+                            </td>
+							<td>
+								Operation
+							</td>
+						</tr>
+                        {% for foo in page %}
+                            <tr>
+                                <td>{{ foo.id }}</td>
+                                <td>{{ foo.name }}</td>
+                                <td>{{ foo.salary }}</td>
+                                <td>{{ foo.age }}</td>
+{#                静态资源调用方法，django笔记6有#}
+                                <td><img src="{% static foo.head.url%}" alt="" style="width: 100px"></td>
+                                <td><a href="{% url 'doapp:deleteemp' %}?id={{ foo.id }}">delete emp</a>&nbsp;<a href="{% url 'doapp:updateemp' %}?id={{ foo.id }}">update emp</a></td>
+                            </tr>
+                        {% endfor %}
+					</table>
+                    {% if page.has_previous %}
+                        <a href="{% url 'doapp:emplist' %}?page={{ page.previous_page_number }}">上一页</a>
+                    {% endif %}
+
+                    {% for foo in page.paginator.page_range %}
+                        <a href="{% url 'doapp:emplist' %}?page={{ foo }}">
+                            {% if page.number == foo %}
+{#                                本页序号变色#}
+                                <span style="color: red">{{ foo }}</span>
+                                {% else %}
+                                <span>{{ foo }}</span>
+                            {% endif %}
+                        </a>
+                    {% endfor %}
+                    {% if page.has_next %}
+                        <a href="{% url 'doapp:emplist' %}?page={{ page.next_page_number }}">下一页</a>
+                    {% endif %}
+					<p>
+						<input type="button" class="button" value="Add Employee" onclick="location='../addemp/'"/>
+					</p>
+				</div>
+			</div>
+			<div id="footer">
+				<div id="footer_bg">
+				ABC@126.com
+				</div>
+			</div>
+		</div>
+        <script>
+            var date=new Date();
+            var year=date.getFullYear();
+            var month=date.getMonth()+1;
+            var day=date.getDate();
+            var hh=date.getHours();
+            var mm=date.getMinutes();
+            var ss=date.getSeconds();
+            var rq=year+"年"+month+"月"+day+"日"+hh+":"+mm+":"+ss;
+            document.getElementById("timenow").innerHTML=rq
+        </script>
+	</body>
+</html>
