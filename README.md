@@ -1,2 +1,2 @@
 # Django
-Some Django profile
+Some Django profiles
